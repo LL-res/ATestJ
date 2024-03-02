@@ -16,6 +16,8 @@
     <description>AtestJ</description>
     <modules>
         <module>plainJava</module>
+        <module>JVM</module>
+        <module>GuavaL</module>
     </modules>
     <properties>
         <java.version>21</java.version>

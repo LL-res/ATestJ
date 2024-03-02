@@ -9,9 +9,8 @@ public class ThreadLocalTest {
     //在get时就是在当前线程中的ThreadLocal list中找到这个ThreadLocal然后取出对应的值
     @Test
     public void t1(){
+        ThreadLocal<String> mStringThreadLocal = new ThreadLocal<>();
         Thread t = new Thread() {
-            ThreadLocal<String> mStringThreadLocal = new ThreadLocal<>();
-
             @Override
             public void run() {
                 super.run();
