@@ -2,10 +2,7 @@ package referenceT;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.ref.PhantomReference;
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.SoftReference;
-import java.lang.ref.WeakReference;
+import java.lang.ref.*;
 
 public class ReferenceTest {
     @Test
@@ -53,7 +50,15 @@ public class ReferenceTest {
         System.out.println("a :" + a.get());
         //只要有引用所指向的内存被垃圾回收了，那么这个引用就会被放入这个queue中
         //注意：只是引用被放入了队列，内存内容还是被回收了
-        System.out.println("queue :" + queue.poll());
+        for (;;){
+            Reference<? extends String> poll = queue.poll();
+            if (poll == null){
+                break;
+            }else{
+                System.out.println(poll);
+                System.out.println(poll.get());
+            }
+        }
     }
 
     @Test

@@ -23,4 +23,24 @@ public class FutureTest {
             System.out.println("time up");
         }
     }
+    @Test
+    public void t2() throws ExecutionException, InterruptedException {
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        //提交到线程池的任务可以抛出异常，在get时可以try catch检查异常，如果不get，则会直接被吞掉异常
+        Future<Object> task1 = executorService.submit(() -> {
+            throw new Exception("msgError");
+        });
+        Future<String> task2 = executorService.submit(() -> "task2Result");
+        try {
+            System.out.println(task1.get());
+        }catch (Exception e){
+            System.out.println("catch the error");
+        }
+        try {
+            System.out.println(task2.get());
+        }catch (Exception e){
+            System.out.println("catch the error");
+        }
+
+    }
 }
